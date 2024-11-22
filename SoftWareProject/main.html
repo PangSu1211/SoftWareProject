@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>디자인 외주 전문 사이트</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="logo">윤서와 아이들</div>
+        <div class="nav-links">
+        <a href="#">Member</a>
+        <a href="#">Instagram</a>
+        <a href="#">Contact</a>
+        </div>
+    </header>
+    <main>
+        <div class="grid-container" id="grid-container">
+        </div>
+    </main>
+
+    <div class="contact-bar">
+        <input type="text" id="name" placeholder="이름" />
+        <input type="text" id="phone" placeholder="전화번호" />
+        <button id="inquiry-btn">문의하기</button>
+        <p id="error-message"></p>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+        <p><strong>Team:</strong> SEVEN HARMONY</p>
+        <p><strong>Location:</strong> 277 Hyodeok-ro, Nam-gu, Gwangju, South Korea</p>
+        <p><strong>Tel:</strong> 062-670-2114</p>
+        <p><strong>Leader:</strong> Oh Yun Seo</p>
+        </div>
+    </footer>
+
+    <div id="image-modal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modal-image">
+    </div>
+    
+    <script>
+        const gridContainer = document.getElementById('grid-container');
+    
+        const images = [
+            { url: "./1.png", description: 'A 기업 프레젠테이션 작업 결과' },
+            { url: './2.png', description: 'B 강연 프레젠테이션 작업 결과' },
+            { url: './3.png', description: 'C 강연 프레젠테이션 작업 결과' },
+            { url: './4.png', description: 'D 강연 프레젠테이션 작업 결과' },
+            { url: './5.png', description: 'E 대학교 프레젠테이션 작업 결과' },
+            { url: './6.png', description: 'F 캠페인 프레젠테이션 작업 결과' },
+            { url: './7.png', description: 'G 기업 프레젠테이션 작업 결과' },
+            { url: './8.png', description: '준비중입니다..' },
+            { url: './8.png', description: '준비중입니다..' },
+            { url: './8.png', description: '준비중입니다..' },
+            { url: './8.png', description: '준비중입니다..' },
+            { url: './8.png', description: '준비중입니다..' },
+            { url: './8.png', description: '준비중입니다..' },
+            { url: './8.png', description: '준비중입니다..' },
+            { url: './8.png', description: '준비중입니다..' },
+            { url: './8.png', description: '준비중입니다..' },
+        ];
+    
+    images.forEach(({ url, description }) => {
+        const item = document.createElement('div');
+        item.classList.add('grid-item');
+
+        const img = document.createElement('img');
+        img.src = url;
+        img.alt = description;
+        img.addEventListener('click', () => openModal(url));
+
+        const desc = document.createElement('p');
+        desc.textContent = description;
+
+        item.appendChild(img);
+        item.appendChild(desc);
+        gridContainer.appendChild(item);
+    });
+
+    const modal = document.getElementById('image-modal');
+    const modalImage = document.getElementById('modal-image');
+    const closeBtn = document.querySelector('.close');
+
+    function openModal(imageUrl) {
+        modalImage.src = imageUrl;
+        modal.classList.add('show');
+        modalImage.classList.add('custom-size');
+    }
+
+    closeBtn.addEventListener('click', () => {
+        modalImage.classList.remove('custom-size');
+        modal.classList.remove('show');
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modalImage.classList.remove('custom-size');
+            modal.classList.remove('show');
+        }
+    });
+
+    </script>
+</body>
+</html>
